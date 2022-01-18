@@ -29,7 +29,11 @@ function Main() {
 
     const likeImage = (index) => {
         liked[index] = !liked[index];
-        likesCount[index] += 1;
+        if (liked[index]){
+            likesCount[index] += 1;
+        } else {
+            likesCount[index] -= 1;
+        }
         console.log(liked, likesCount);
     }
 
