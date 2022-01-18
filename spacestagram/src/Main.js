@@ -79,10 +79,10 @@ export default Main;
 1. Image Cards [DONE]
 2. Like Button
 3. Load More
-5. Header/Footer
-6. Share function popup
-7. Share function page and request
-8. Make it look nice
+4. Header/Footer
+5. Share function popup
+6. Share function page and request
+7. Make it look nice
 */
 
 /*
