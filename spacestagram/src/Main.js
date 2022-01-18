@@ -79,7 +79,6 @@ export default Main;
 1. Image Cards [DONE]
 2. Like Button
 3. Load More
-4. Description? Read more
 5. Header/Footer
 6. Share function popup
 7. Share function page and request
