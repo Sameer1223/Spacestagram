@@ -17,7 +17,7 @@ function SharePopUp(props) {
             </div>
             <div className="popupContent">
                 <p className="link">{props.url}</p>
-                <button className="copyButton" onClick={() => handleClick()}>{copied? "Copied" : "Copy Link"}</button>
+                <button className="copyButton" onClick={() => handleClick()}>{copied? "Copied!" : "Copy Link"}</button>
             </div>
         </div>
     ) : "";
