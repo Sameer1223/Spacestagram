@@ -1,16 +1,18 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MediaCard } from '@shopify/polaris';
-import './styles.css';
+import '../Styles/styles.css';
 import './Main.css';
+import SharePopUp from '../Components/SharePopUp';
 
 function Main() {
     const postsLimit = 5;
 
     const [items, setItems] = useState([]);
-    const [likesCount, setLikesCount] = useState([]);
-    const [dataIsLoaded, setDataIsLoaded] = useState(false);
+    const [likesCount, setLikesCount] = useState(new Array(postsLimit).fill(0));
+    const [liked, setLiked] = useState(new Array(postsLimit).fill(false));
 
-    const [liked, setLiked] = useState([]);
+    const [buttonPopup, setButtonPopup] = useState(false);
+    const [link, setLink] = useState("");
 
     useEffect(() => {
         document.body.style.backgroundColor = "#fafafa";
@@ -18,31 +20,51 @@ function Main() {
         .then(res => res.json())
         .then((json) => {
             setItems(json);
-            setDataIsLoaded(true);
-            setLikesCount(new Array(postsLimit).fill(0));
-            setLiked(new Array(postsLimit).fill(false))
         })
         .catch(err => {
             console.log(err);
         });
     }, [])
 
+    
     const likeImage = (index) => {
-        liked[index] = !liked[index];
-        if (liked[index]){
-            likesCount[index] += 1;
+        let newLiked = liked;
+        newLiked[index] = !newLiked[index];
+
+        let newCounts = likesCount;
+        if (newLiked[index]){
+            newCounts[index] += 1;
         } else {
-            likesCount[index] -= 1;
+            newCounts[index] -= 1;
         }
-        console.log(liked, likesCount);
+        setLiked([...newLiked]);
+        setLikesCount([...newCounts]);
+    }
+
+    const fetchMore = () => {
+        fetch("https://api.nasa.gov/planetary/apod?api_key=pk00Sd8ZOdFNUNVrgaTXB0se6kHJcGxlJjJfrBhM&count=" + postsLimit)
+        .then(res => res.json())
+        .then((json) => {
+            setItems(items.concat(json));
+            setLikesCount(likesCount.concat(new Array(postsLimit).fill(0)));
+            setLiked(liked.concat(new Array(postsLimit).fill(false)));
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }
+
+    const handleShare = (index) => {
+        setLink(window.location.origin + '/post/' + items[index].date);
+        setButtonPopup(true);
     }
 
     return (
         <div className="card-container">
             {items.map((item, i) => (
-                <div className="card" key={i}>
+                <div className="card">
                     <MediaCard
-                        title={item.title}
+                        title={item.title + " - " + item.date}
                         primaryAction={{
                             content: liked[i]? 'Unlike' : 'Like',
                             onAction: () => {
@@ -50,7 +72,7 @@ function Main() {
                             },
                         }}
                         description={item.explanation.split(" digg_url =")[0] }
-                        popoverActions={[{content: 'Share', onAction: () => {}}]}
+                        popoverActions={[{content: 'Share', onAction: () => {handleShare(i)}}]}
                         portrait={true}
                         >
                             <img
@@ -66,8 +88,9 @@ function Main() {
                     <p className="likes">{likesCount[i]} Likes</p>
                 </div>
             ))}
+            <SharePopUp url={link} trigger={buttonPopup} setTrigger={setButtonPopup}/>
             <div className="buttonDiv">
-                <button onClick={() => {}} className="loadMore">Load more</button>
+                <button onClick={() => {fetchMore()}} className="loadMore">Load more</button>
             </div>
         </div>
     );

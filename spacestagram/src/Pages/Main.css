@@ -1,6 +1,7 @@
 .card-container{
     width: 100%;
     padding-top: 40px;
+    padding-bottom: 20px;
 }
 
 .card{
@@ -25,18 +26,26 @@
 
 .buttonDiv {
     margin: auto;
-    width: 300px;
+    padding-bottom: 20px;
+    width: 100px;
 }
 
 .loadMore {
     background-color: white;
+    font-size: 15px;
+    width: 100px;
     border: 1px solid #ddd;
     box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.1);;
     padding: 5px;
     color: lightseagreen;
+    cursor: pointer;
+}
+
+.loadMore:hover {
+    background-color: lightgray;
 }
 
 @font-face{
     font-family: 'Raleway';
-    src:url("fonts/Raleway-Regular.ttf") format("trueType");
+    src:url("../fonts/Raleway-Regular.ttf") format("trueType");
 }

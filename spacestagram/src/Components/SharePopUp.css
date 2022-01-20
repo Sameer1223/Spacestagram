@@ -1,0 +1,68 @@
+.popup {
+    position: fixed;
+    width: 300px;
+    height: 100px;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -150px;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.1);
+}
+
+.popupHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popupContent {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10px;
+    margin-top: 10px;
+    align-items: center;
+    border: 1px solid #00D441;
+}
+
+.link {
+    padding-left: 5px;
+    overflow: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+    text-overflow: clip;
+    width: 175px;
+}
+
+.closeButton {
+    background-color: white;
+    border: 0px;
+    padding-bottom: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.copyButton {
+    cursor: pointer;
+    color: white;
+    padding: 6px;
+    min-width: 75px;
+    background-color: #00D441;
+    border: 1px solid #00D441;
+}
+
+p::-webkit-scrollbar-track {
+    background-color: #cfcfcf;
+}
+
+p::-webkit-scrollbar {
+    height: 10px;
+}
+
+p::-webkit-scrollbar-thumb{
+    width: 5px;
+    background-color: gray;
+}

@@ -1,14 +1,17 @@
 import logo from './logo.svg';
 import { AppProvider } from '@shopify/polaris';
 import translations from '@shopify/polaris/locales/en.json';
-import Main from './Main.js';
-import Header from './Header.js';
+import Header from './UI/Header.js';
+import Footer from './UI/Footer.js';
+import Page from './Pages/Page.js';
+import './Styles/index.css';
 
 function App() {
     return (
         <AppProvider i18n={translations}>
             <Header/>
-            <Main/>
+            <Page/>
+            <Footer/>
         </AppProvider>
     );
 }
